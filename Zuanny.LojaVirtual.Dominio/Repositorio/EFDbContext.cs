@@ -11,8 +11,10 @@ namespace Zuanny.LojaVirtual.Dominio.Repositorio
 {
     public class EFDbContext : DbContext
     {
+        //Aqui faço o mapeamento das tabelas do meu banco
         public DbSet<Produto> Produtos { get; set; }
 
+        //Impede de colocar o nome das tabelas no plural automaticamente
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();

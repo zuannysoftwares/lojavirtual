@@ -9,6 +9,7 @@ namespace Zuanny.LojaVirtual.Dominio.Repositorio
 {
     public class ProdutosRepositorio
     {
+        //Referencia ao Entity pra fazer as qwerys
         private readonly EFDbContext _context = new EFDbContext();
         
         public IEnumerable<Produto> Produtos
