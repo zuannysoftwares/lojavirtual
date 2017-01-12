@@ -10,9 +10,7 @@ namespace Zuanny.LojaVirtual.Web.Controllers
     public class ProdutoController : Controller
     {
         private ProdutosRepositorio _repositorio;
-
-
-
+        
         // GET: Produto
         public ActionResult Index()
         {
