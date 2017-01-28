@@ -13,13 +13,14 @@ namespace Zuanny.LojaVirtual.Web.Controllers
         private ProdutosRepositorio _repositorio;
         public int ProdutosPorPagina = 3;
         // GET: Vitrine
-        public ViewResult ListaProdutos(int pagina = 1)
+        public ViewResult ListaProdutos(string categoria, int pagina = 1)
         {
             _repositorio = new ProdutosRepositorio();
 
             ProdutosViewModel model = new ProdutosViewModel
             {
                 Produtos = _repositorio.Produtos
+                .Where(p => categoria == null || p.Categoria == categoria)
                 .OrderBy(p => p.Descricao)
                 .Skip((pagina - 1) * ProdutosPorPagina)
                 .Take(ProdutosPorPagina),
@@ -29,7 +30,9 @@ namespace Zuanny.LojaVirtual.Web.Controllers
                     PaginaAtual = pagina,
                     ItensPorPagina = ProdutosPorPagina,
                     ItensTotal = _repositorio.Produtos.Count()
-                }
+                },
+
+                CategoriaAtual = categoria
             };
 
             return View(model);
